@@ -1,0 +1,28 @@
+package com.exemplo.controller;
+
+import com.exemplo.model.Usuario;
+import com.exemplo.service.UsuarioService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/usuarios")
+public class UsuarioController {
+
+    private final UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+
+    @GetMapping
+    public List<Usuario> listarUsuarios() {
+        return usuarioService.listarUsuarios();
+    }
+
+    @PostMapping
+    public Usuario salvarUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.salvarUsuario(usuario);
+    }
+}
